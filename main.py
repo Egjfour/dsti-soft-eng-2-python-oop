@@ -1,5 +1,4 @@
-from packing.item import Item
-from packing.suitcase import Suitcase
+from packing.classes import Item, Suitcase, CargoHold #pylint: disable=W0611
 
 def validate_part_1():
     print("------------ RUNNING TESTS (Part 1) ------------")
@@ -104,15 +103,93 @@ def validate_part_5():
     suitcase.add_item(brick)
 
     # Print the heaviest item in the suitcase
-    print("The headiest item:", suitcase.heaviest_item())
+    print("The heaviest item:", suitcase.heaviest_item())
     assert suitcase.heaviest_item() == brick
 
     print("------------ ALL TESTS PASSED (Part 5) ------------")
     return True
 
+def validate_part_6():
+    print("------------ RUNNING TESTS (Part 6) ------------")
+    book = Item("ABC Book", 2)
+    phone = Item("Nokia 3210", 1)
+    brick = Item("Brick", 4)
+
+    adas_suitcase = Suitcase(10)
+    adas_suitcase.add_item(book)
+    adas_suitcase.add_item(phone)
+    print("Ada's Suitcase:", adas_suitcase)
+
+    peters_suitcase = Suitcase(10)
+    peters_suitcase.add_item(brick)
+    print("Peter's Suitcase:", peters_suitcase)
+
+    cargo_hold = CargoHold(1000)
+    # Validate initialization
+    assert cargo_hold.max_weight == 1000
+    assert len(cargo_hold._items) == 0 # pylint: disable=W0212
+    assert cargo_hold.weight() == 0 # pylint: disable=W0212
+    print(cargo_hold)
+    assert 'space for 1000 kg' in str(cargo_hold)
+
+    cargo_hold.add_suitcase(adas_suitcase)
+    assert cargo_hold.weight() == adas_suitcase.weight()
+    assert len(cargo_hold._items) == 1 # pylint: disable=W0212
+    print(cargo_hold)
+    assert 'space for 997 kg' in str(cargo_hold)
+
+    cargo_hold.add_suitcase(peters_suitcase)
+    print(cargo_hold)
+    assert 'space for 993 kg' in str(cargo_hold)
+
+    print("------------ ALL TESTS PASSED (Part 6) ------------")
+    return True
+
+def validate_part_7():
+    print("------------ RUNNING TESTS (Part 7) ------------")
+    # Create some items and a suitcase
+    book = Item("ABC Book", 2)
+    phone = Item("Nokia 3210", 1)
+    brick = Item("Brick", 4)
+
+    adas_suitcase = Suitcase(10)
+    adas_suitcase.add_item(book)
+    adas_suitcase.add_item(phone)
+    print("Ada's Suitcase:", adas_suitcase)
+
+    peters_suitcase = Suitcase(10)
+    peters_suitcase.add_item(brick)
+    print("Peter's Suitcase:", peters_suitcase)
+
+    cargo_hold = CargoHold(1000)
+    cargo_hold.add_suitcase(adas_suitcase)
+    cargo_hold.add_suitcase(peters_suitcase)
+
+    # Print the items in the cargo hold
+    print("The suitcases in the cargo hold contain the following items:")
+    cargo_hold.print_items()
+
+    print("------------ ALL TESTS PASSED (Part 7) ------------")
+    return True
+
 if __name__ == '__main__':
     assert validate_part_1()
+    print("\n\n")
+
     assert validate_part_2()
+    print("\n\n")
+
     assert validate_part_3()
+    print("\n\n")
+
     assert validate_part_4()
+    print("\n\n")
+
     assert validate_part_5()
+    print("\n\n")
+
+    assert validate_part_6()
+    print("\n\n")
+
+    assert validate_part_7()
+    print("------------ ALL TESTS PASSED ------------")
