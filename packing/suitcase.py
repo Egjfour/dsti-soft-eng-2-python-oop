@@ -31,4 +31,8 @@ class Suitcase(Item):
         total_item_count = len(self._items)
         total_weight = self.weight()
 
-        return f"{total_item_count} items ({total_weight} kg)"
+        return f"{total_item_count} item{'s' if total_item_count != 1 else ''} ({total_weight} kg)"
+
+    def print_items(self):
+        for item in self._items:
+            print(item)

@@ -53,6 +53,46 @@ def validate_part_2():
     print("------------ ALL TESTS PASSED (Part 2) ------------")
     return True
 
+def validate_part_3():
+    print("------------ RUNNING TESTS (Part 3) ------------")
+    # Create some items and a suitcase
+    book = Item("ABC Book", 2)
+
+    suitcase = Suitcase(5)
+    suitcase.add_item(book)
+
+    print(suitcase)
+    assert str(suitcase) == "1 item (2 kg)"
+
+    print("------------ ALL TESTS PASSED (Part 3) ------------")
+    return True
+
+def validate_part_4():
+    print("------------ RUNNING TESTS (Part 4) ------------")
+    # Create some items and a suitcase
+    book = Item("ABC Book", 2)
+    phone = Item("Nokia 3210", 1)
+    brick = Item("Brick", 4)
+
+    suitcase = Suitcase(10)
+    suitcase.add_item(book)
+    suitcase.add_item(phone)
+    suitcase.add_item(brick)
+
+    # Print the items in the suitcase as well as the weight of the suitcase
+    suitcase.print_items()
+    assert suitcase.print_items() == None
+
+    combined_weight_manual = sum([book.weight(), phone.weight(), brick.weight()])
+    combined_weight = suitcase.weight()
+    print("Combined weight:", combined_weight, "kg")
+    assert combined_weight == combined_weight_manual
+
+    print("------------ ALL TESTS PASSED (Part 4) ------------")
+    return True
+
 if __name__ == '__main__':
     assert validate_part_1()
     assert validate_part_2()
+    assert validate_part_3()
+    assert validate_part_4()
