@@ -15,8 +15,8 @@ class Item(object):
     # Would normally use the @property decorator, 
     # but that does not fully encapsulate the attributes such that instance.x = y is still possible
     def __set_weight(self, weight):
-        if weight <= 0:
-            raise ValueError("Weight must be greater than 0.")
+        if weight < 0:
+            raise ValueError("Weight must be non-negative.")
         self._weight = weight
 
     def __get_weight(self):

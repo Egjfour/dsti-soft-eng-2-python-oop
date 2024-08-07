@@ -1,4 +1,5 @@
 from packing.item import Item
+from packing.suitcase import Suitcase
 
 def validate_part_1():
     print("------------ RUNNING TESTS (Part 1) ------------")
@@ -26,7 +27,32 @@ def validate_part_1():
         print("Error:", e, "- Cannot update weight after initialization as expected.")
     assert book.weight() == 2
     print("------------ ALL TESTS PASSED (Part 1) ------------")
-    return True    
+    return True
+
+def validate_part_2():
+    print("------------ RUNNING TESTS (Part 2) ------------")
+    # Create some items and a suitcase
+    book = Item("ABC Book", 2)
+    phone = Item("Nokia 3210", 1)
+    brick = Item("Brick", 4)
+
+    suitcase = Suitcase(5)
+
+    # Check that we initialized correctly using inheritance from Item
+    assert suitcase._weight == 0 # pylint: disable=W0212
+    assert suitcase.max_weight == 5
+    print(suitcase)
+
+    for item in [book, phone, brick]:
+        suitcase.add_item(item)
+        print(suitcase)
+
+    # Check that the suitcase has the correct number of items
+    assert len(suitcase._items) == 2 # pylint: disable=W0212
+
+    print("------------ ALL TESTS PASSED (Part 2) ------------")
+    return True
 
 if __name__ == '__main__':
     assert validate_part_1()
+    assert validate_part_2()
