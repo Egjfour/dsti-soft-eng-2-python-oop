@@ -31,8 +31,17 @@ class Suitcase(Item):
         total_item_count = len(self._items)
         total_weight = self.weight()
 
+        # Handle the special case where the suitcase has only one item (English grammar)
         return f"{total_item_count} item{'s' if total_item_count != 1 else ''} ({total_weight} kg)"
 
     def print_items(self):
         for item in self._items:
             print(item)
+
+    def heaviest_item(self):
+        # In case the suitcase is empty, return None
+        if len(self._items) == 0:
+            return None
+        
+        # Return the item with the highest weight using a lambda function inside of max
+        return max(self._items, key=lambda item: item.weight())

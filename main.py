@@ -91,8 +91,28 @@ def validate_part_4():
     print("------------ ALL TESTS PASSED (Part 4) ------------")
     return True
 
+def validate_part_5():
+    print("------------ RUNNING TESTS (Part 5) ------------")
+    # Create some items and a suitcase
+    book = Item("ABC Book", 2)
+    phone = Item("Nokia 3210", 1)
+    brick = Item("Brick", 4)
+
+    suitcase = Suitcase(10)
+    suitcase.add_item(book)
+    suitcase.add_item(phone)
+    suitcase.add_item(brick)
+
+    # Print the heaviest item in the suitcase
+    print("The headiest item:", suitcase.heaviest_item())
+    assert suitcase.heaviest_item() == brick
+
+    print("------------ ALL TESTS PASSED (Part 5) ------------")
+    return True
+
 if __name__ == '__main__':
     assert validate_part_1()
     assert validate_part_2()
     assert validate_part_3()
     assert validate_part_4()
+    assert validate_part_5()
