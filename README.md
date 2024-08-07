@@ -6,8 +6,8 @@ From a terminal, run `python main.py` to execute the tests and see the use cases
 
 # Structure
 - All classes can be imported from `classes.py` in the packing module
-- class structure
-Item \n
-    \t->ItemWithHoldingCapacity \n
-        \t\t-> Suitcase \n
-        \t\t-> CargoHold \n
+- class structure:
+> Item
+>> ItemWithHoldingCapacity
+>>> Suitcase \
+>>> CargoHold
